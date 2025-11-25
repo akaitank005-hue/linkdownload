@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unlock Steps</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #4b79a1, #283e51);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 22px;
+      padding: 35px;
+      width: 90%;
+      max-width: 430px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 { margin-top: 0; font-weight: 600; }
+
+    .step-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      margin: 12px 0;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .step-btn:hover { transform: scale(1.03); opacity: 0.9; }
+
+    .like { background: #8bc34a; }
+    .like2 { background: #ffb300; }
+    .sub { background: #ff7043; }
+
+    .locked-btn {
+      background: #90caf9;
+      cursor: not-allowed;
+      opacity: 0.6;
+      margin-top: 18px;
+    }
+
+    .unlocked {
+      background: #42a5f5 !important;
+      cursor: pointer !important;
+      opacity: 1 !important;
+    }
+
+    .dots { margin: 15px 0; font-size: 20px; letter-spacing: 4px; }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <p>Complete all steps to unlock the script</p>
+
+    <button class="step-btn like" onclick="completeStep(1); window.open('https://youtube.com','_blank')">👍 Like Video</button>
+    <button class="step-btn like2" onclick="completeStep(2); window.open('https://youtube.com','_blank')">👍 Second Like</button>
+    <button class="step-btn sub" onclick="completeStep(3); window.open('https://youtube.com','_blank')">▶️ Subscribe Now</button>
+
+    <div class="dots">• • • •</div>
+
+    <button id="continueBtn" class="step-btn locked-btn">🔒 Continue</button>
+  </div>
+
+  <script>
+    let completed = {1:false, 2:false, 3:false};
+
+    function completeStep(step) {
+      completed[step] = true;
+      checkUnlock();
+    }
+
+    function checkUnlock() {
+      if (completed[1] && completed[2] && completed[3]) {
+        const btn = document.getElementById('continueBtn');
+        btn.classList.add('unlocked');
+        btn.innerHTML = "🔓 Continue";
+        btn.onclick = () => window.location.href = "https://google.com";
+      }
+    }
+  </script>
+</body>
+</html>
